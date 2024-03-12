@@ -43,6 +43,7 @@ WITH cte_trails1 AS
             CASE WHEN altitude_flag = 1 THEN end_hut ELSE start_hut END AS end_hut,
             CASE WHEN altitude_flag = 1 THEN end_hut_name ELSE start_hut_name END AS end_hut_name
      FROM cte_trails2)
+     
 SELECT c1.start_hut_name AS startpt,
         c1.end_hut_name AS middlept,
         c2.end_hut_name AS endpt
