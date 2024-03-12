@@ -36,6 +36,7 @@ FROM brands),
 CTE2 AS 
 ( SELECT *, ROW_NUMBER() OVER(PARTITION BY Pair_id ORDER BY Pair_id) AS rn 
 FROM CTE ) 
+
 SELECT brand1,brand2,year,custom1,custom2,custom3,custom4 FROM CTE2 
 WHERE rn=1
 OR (custom1<>custom3 and custom2<>custom4)
