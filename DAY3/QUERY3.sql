@@ -34,6 +34,7 @@ WITH CTE AS (
 			SUM( CASE WHEN width IS NOT NULL THEN 1 ELSE 0 END) OVER(ORDER BY id) AS 'Width_Segment',
 			SUM( CASE WHEN height IS NOT NULL THEN 1 ELSE 0 END) OVER(ORDER BY id) AS 'Height_Segment'
 			FROM FOOTER ) 
+			
 SELECT 
 FIRST_VALUE(car) OVER(PARTITION BY Car_Segment ORDER BY id ) AS 'New_Car',
 FIRST_VALUE(length) OVER(PARTITION BY Length_Segment ORDER BY id ) AS 'New_Length',
