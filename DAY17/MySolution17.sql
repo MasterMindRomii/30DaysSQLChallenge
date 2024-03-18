@@ -45,8 +45,10 @@ SELECT * FROM user_login;
 -- If a user logged in consecutively 5 or more times but not spanning 5 days then they should be excluded.
 
 WITH CTE AS (SELECT user_id,login_date,
-DENSE_RANK() OVER(PARTITION BY user_id ORDER BY user_id,login_date) AS 'Ranking',
-DATE_SUB(login_date, INTERVAL (DENSE_RANK() OVER(PARTITION BY user_id ORDER BY user_id,login_date)) DAY) AS Date_Group
+DENSE_RANK() OVER(PARTITION BY user_id ORDER BY user_id,login_date) 
+AS 'Ranking',
+DATE_SUB(login_date, INTERVAL (DENSE_RANK() OVER(PARTITION BY user_id 
+ORDER BY user_id,login_date)) DAY) AS 'Date_Group'
 FROM user_login)
 
 SELECT user_id,Date_Group,
